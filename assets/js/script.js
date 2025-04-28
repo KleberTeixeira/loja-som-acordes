@@ -1,28 +1,32 @@
         // Dados dos produtos
         const featuredProducts = [
             {
-                name: "Microfone Condensador Profissional",
-                price: 599.90,
-                image: "https://m.media-amazon.com/images/I/61bEWU3XURL._AC_SL1500_.jpg",
-                installments: "10x de R$ 59,99 sem juros"
+                name: "Sax Alto",
+                price: 3500.00,
+                image: "assets/img/produto_01.jpg",
+                installments: "10x de R$ 350,00 sem juros",
+                descricao: "ideal para músicos iniciantes e profissionais que buscam um som equilibrado, projeção excepcional e conforto ao tocar. Com acabamento refinado e construção durável, ele oferece afinação precisa e resposta ágil em todas as oitavas."
             },
             {
-                name: "Caixa de Som Ativa 15'' 2000W",
-                price: 2499.90,
-                image: "https://m.media-amazon.com/images/I/71rXVL6Z1wL._AC_SL1500_.jpg",
-                installments: "12x de R$ 208,33 sem juros"
+                name: "Violão Folk Cutaway",
+                price: 1400.00,
+                image: "assets/img/produto_02.png",
+                installments: "10x de R$ 140,00 sem juros",
+                descricao: "perfeito para músicos que buscam um som encorpado, projeção potente e acesso facilitado às notas mais agudas. Seu design com recorte no corpo (cutaway) permite maior mobilidade no braço, tornando-o ideal para solos e arranjos mais elaborados."
             },
             {
-                name: "Interface de Áudio 8 Canais",
-                price: 1899.00,
-                image: "https://m.media-amazon.com/images/I/71Qo5Y2uMCL._AC_SL1500_.jpg",
-                installments: "10x de R$ 189,90 sem juros"
+                name: "Guitarra Fender",
+                price: 7730.00,
+                image: "assets/img/produto_03.jpeg",
+                installments: "10x de R$ 773,00 sem juros",
+                descricao: "escolha definitiva para músicos que buscam timbres icônicos, conforto e qualidade incomparável. Reconhecida mundialmente, a Fender entrega versatilidade e performance excepcionais, sendo ideal para diversos estilos musicais, como rock, blues, jazz e pop."
             },
             {
-                name: "Fone de Ouvido Monitoramento",
-                price: 459.90,
-                image: "https://m.media-amazon.com/images/I/61C9EQOaJVL._AC_SL1500_.jpg",
-                installments: "6x de R$ 76,65 sem juros"
+                name: "Bateria Yamaha",
+                price: 6890.00,
+                image: "assets/img/produto_04.png",
+                installments: "10x de R$ 689,00 sem juros",
+                descricao: "perfeita para bateristas que buscam um som encorpado, construção robusta e resposta excepcional. Com a qualidade inconfundível da Yamaha, esse kit oferece equilíbrio entre graves profundos, médios definidos e agudos brilhantes, atendendo desde iniciantes até músicos profissionais."
             }
         ];
         
@@ -93,6 +97,9 @@
                         <h3 class="product-name">${product.name}</h3>
                         ${priceHTML}
                         <div class="installment">${product.installments}</div>
+                        <div class="descricao">
+                            <p><br>${product.descricao}
+                        </div>
                         <button class="add-to-cart">Adicionar ao Carrinho</button>
                     </div>
                 `;
