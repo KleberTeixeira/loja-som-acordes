@@ -9,7 +9,7 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-straight/css/uicons-bold-straight.css'>
-    <script type="text/javascript" src="assets/js/script.js"></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-straight/css/uicons-regular-straight.css'>
 </head>
 <body>
     <!-- Header -->
@@ -28,7 +28,8 @@
                 <div class="user-actions">
                     <a href="#"><i class="fas fa-user"></i> Minha Conta</a>
                     <a href="#"><i class="fas fa-heart"></i> Favoritos</a>
-                    <a href="#"><i class="fas fa-shopping-cart"></i> Carrinho</a>
+                    <a href="#" id="cart-icon"><i class="fas fa-shopping-cart"></i> Carrinho <span class="cart-count">0</span></a>
+
                 </div>
             </div>
         </div>
@@ -92,27 +93,19 @@
                     </div>
                     <h3 class="category-name">Percussão</h3>
                 </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fi fi-rs-speaker"></i>
+                    </div>
+                    <h3 class="category-name">Áudio</h3>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fi fi-rs-piano-keyboard"></i>
+                    </div>
+                    <h3 class="category-name">Teclas</h3>
+                </div>
 
-                <!--
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-volume-up"></i>
-                    </div>
-                    <h3 class="category-name">Caixas de Som</h3>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3 class="category-name">Iluminação</h3>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">
-                        <i class="fas fa-music"></i>
-                    </div>
-                    <h3 class="category-name">Estúdio</h3>
-                </div>
-            -->
             </div>
         </section>
         
@@ -190,6 +183,8 @@
             </div>
         </div>
     </footer>
-    
+
+    <script type="text/javascript" src="assets/js/script.js"></script>
+
 </body>
 </html>

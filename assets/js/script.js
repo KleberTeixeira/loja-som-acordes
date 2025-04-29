@@ -98,28 +98,31 @@
                         ${priceHTML}
                         <div class="installment">${product.installments}</div>
                         <div class="descricao">
-                            <p><br>${product.descricao}
+                            <p>${product.descricao}
                         </div>
                         <button class="add-to-cart">Adicionar ao Carrinho</button>
                     </div>
                 `;
                 
                 container.appendChild(productCard);
+
             });
         }
         
         // Renderizar produtos quando a página carregar
         document.addEventListener('DOMContentLoaded', function() {
             renderProducts(featuredProducts, 'featured-products');
-            renderProducts(discountProducts, 'discount-products');
+            //renderProducts(discountProducts, 'discount-products');
             
             // Adicionar evento de clique nos botões "Adicionar ao Carrinho"
+            
             document.querySelectorAll('.add-to-cart').forEach(button => {
                 button.addEventListener('click', function() {
                     const productName = this.closest('.product-card').querySelector('.product-name').textContent;
                     alert(`${productName} foi adicionado ao carrinho!`);
                 });
             });
+            
             
             // Adicionar evento de submit no formulário de newsletter
             document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
