@@ -38,6 +38,7 @@
             <div class="container">
                 <ul class="main-menu">
                     <li><a href="#">Home</a></li>
+                    <li><a href="#">Áudio</a></li>
                     <li><a href="#">Instrumentos</a></li>
                     <li><a href="#">Promoções</a></li>
                     <li><a href="#">Lançamentos</a></li>
@@ -55,7 +56,7 @@
                 <p>Seja você um músico profissional ou um apaixonado por música,
                     aqui você encontra os melhores instrumentos e acessórios para elevar
                     sua performance. Guitarras, teclados, baterias e muito mais, com qualidade
-                    garantida e entrega rápida. Explore nossa seleção e toque com alma!<br><br><br></p>
+                    garantida e entrega rápida. Explore nossa seleção e toque com alma!</p>
             <a href="#" class="btn">Confira as ofertas</a>
             </div>
         </div>
@@ -75,40 +76,45 @@
         <section class="categories">
             <h2 class="section-title">Categorias</h2>
             <div class="categories-grid">
-                <div class="category-card">
+                <div class="category-card" data-category="all">
+                    <div class="category-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 class="category-name">Todos</h3>
+                </div>
+                <div class="category-card" data-category="cordas">
                     <div class="category-icon">
                         <i class="fi fi-ss-guitar"></i>
                     </div>
                     <h3 class="category-name">Cordas</h3>
                 </div>
-                <div class="category-card">
+                <div class="category-card" data-category="sopro">
                     <div class="category-icon">
                         <i class="fi fi-sr-trumpet"></i>
                     </div>
                     <h3 class="category-name">Sopro</h3>
                 </div>
-                <div class="category-card">
+                <div class="category-card" data-category="percussao">
                     <div class="category-icon">
                         <i class="fi fi-bs-drum"></i>
                     </div>
                     <h3 class="category-name">Percussão</h3>
                 </div>
-                <div class="category-card">
+                <div class="category-card" data-category="audio">
                     <div class="category-icon">
                         <i class="fi fi-rs-speaker"></i>
                     </div>
                     <h3 class="category-name">Áudio</h3>
                 </div>
-                <div class="category-card">
+                <div class="category-card" data-category="teclas">
                     <div class="category-icon">
                         <i class="fi fi-rs-piano-keyboard"></i>
                     </div>
                     <h3 class="category-name">Teclas</h3>
                 </div>
-
             </div>
         </section>
-        
+
         <!-- Ofertas
         <section class="featured">
             <h2 class="section-title">Ofertas Especiais</h2>
@@ -183,6 +189,45 @@
             </div>
         </div>
     </footer>
+
+    <!-- Notificação do Carrinho no estilo Megasom -->
+    <div class="cart-notification" id="cart-notification">
+        <div class="cart-notification-header">
+            <h3>Produto adicionado ao carrinho</h3>
+            <button class="close-notification" id="close-notification">&times;</button>
+        </div>
+        <div class="cart-notification-body">
+            <div class="notification-message">
+                <i class="fas fa-check-circle"></i> Item adicionado com sucesso!
+            </div>
+            <div class="notification-product" id="notification-product">
+                <!-- Conteúdo será preenchido via JavaScript -->
+            </div>
+            <div class="cart-notification-actions">
+                <a href="#" class="cart-notification-btn continue-shopping">Continuar comprando</a>
+                <a href="#" class="cart-notification-btn go-to-cart">Ir para o carrinho</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal do Carrinho -->
+    <div class="overlay" id="overlay"></div>
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-header">
+            <h3>Meu Carrinho</h3>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Itens do carrinho serão inseridos aqui -->
+        </div>
+        <div class="cart-summary">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">R$ 0,00</span>
+            </div>
+            <button class="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
 
     <script type="text/javascript" src="assets/js/script.js"></script>
 
