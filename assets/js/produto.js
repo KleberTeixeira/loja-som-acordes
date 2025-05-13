@@ -48,64 +48,14 @@ function loadProductDetails() {
         
         // Configurar botão de adicionar ao carrinho
         document.getElementById('add-to-cart').addEventListener('click', function() {
-            addToCart(product.id);
-            showCartNotification(product);
+            const quantity = parseInt(document.querySelector('.quantity-input').value);
+            addToCart(product.id, quantity); // Passar a quantidade como parâmetro
+            showCartNotification(product, quantity); // Mostrar a quantidade correta
         });
     } else {
         // Produto não encontrado - redirecionar para home
         window.location.href = 'index.html';
     }
-}
-
-// Função para formatar preço
-function formatPrice(price) {
-    return 'R$ ' + price.toFixed(2).replace('.', ',');
-}
-
-// Função para mostrar notificação
-function showCartNotification(product) {
-    const notification = document.createElement('div');
-    notification.className = 'cart-notification';
-    notification.innerHTML = `
-        <div class="cart-notification-header">
-            <h3>Produto adicionado ao carrinho</h3>
-            <button class="close-notification">&times;</button>
-        </div>
-        <div class="cart-notification-body">
-            <div class="notification-message">
-                <i class="fas fa-check-circle"></i> Item adicionado com sucesso!
-            </div>
-            <div class="notification-product">
-                <div class="notification-product-image">
-                    <img src="${product.image}" alt="${product.name}">
-                </div>
-                <div class="notification-product-details">
-                    <div class="notification-product-name">${product.name}</div>
-                    <div class="notification-product-price">${formatPrice(product.price)}</div>
-                    <div>Quantidade: 1</div>
-                </div>
-            </div>
-            <div class="cart-notification-actions">
-                <a href="index.html" class="cart-notification-btn continue-shopping">Continuar comprando</a>
-                <a href="carrinho.html" class="cart-notification-btn go-to-cart">Ir para o carrinho</a>
-            </div>
-        </div>
-    `;
-    
-    document.body.appendChild(notification);
-    notification.style.display = 'block';
-    
-    // Fechar notificação
-    notification.querySelector('.close-notification').addEventListener('click', function() {
-        notification.style.display = 'none';
-    });
-    
-    // Esconder após 5 segundos
-    setTimeout(() => {
-        if (notification.style.display === 'block') {
-            notification.style.display = 'none';
-        }
-    }, 5000);
 }
 
 // Carregar os detalhes do produto quando a página carregar

@@ -1,3 +1,12 @@
+        // Elementos do DOM
+        const cartIcon = document.getElementById('cart-icon');
+        const cartModal = document.getElementById('cart-modal');
+        const closeCart = document.getElementById('close-cart');
+        const overlay = document.getElementById('overlay');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotalElement = document.getElementById('cart-total');
+        const cartCountElement = document.querySelector('.cart-count');
+        
         // Dados dos produtos
         const featuredProducts = [
             {
@@ -72,26 +81,18 @@
         
         // Carrinho de compras
         let cart = [];
-        
-        // Elementos do DOM
-        const cartIcon = document.getElementById('cart-icon');
-        const cartModal = document.getElementById('cart-modal');
-        const closeCart = document.getElementById('close-cart');
-        const overlay = document.getElementById('overlay');
-        const cartItemsContainer = document.getElementById('cart-items');
-        const cartTotalElement = document.getElementById('cart-total');
-        const cartCountElement = document.querySelector('.cart-count');
-        
+
         // Função para formatar preço
         function formatPrice(price) {
             return 'R$ ' + price.toFixed(2).replace('.', ',');
         }
         
         // Função para atualizar o contador do carrinho
-        function updateCartCount() {
+        window.updateCartCount = function() {
             const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
             cartCountElement.textContent = totalItems;
         }
+
         
         // Função para calcular o total do carrinho
         function calculateCartTotal() {
@@ -137,7 +138,7 @@
         }
         
         // Função para mostrar notificação do carrinho
-        function showCartNotification(product) {
+        function showCartNotification(product, quantity = 1) {
             const notification = document.getElementById('cart-notification');
             const productContainer = document.getElementById('notification-product');
             
@@ -149,7 +150,7 @@
                 <div class="notification-product-details">
                     <div class="notification-product-name">${product.name}</div>
                     <div class="notification-product-price">${formatPrice(product.price)}</div>
-                    <div>Quantidade: 1</div>
+                    <div>Quantidade: ${quantity}</div>
                 </div>
             `;
             
@@ -165,13 +166,13 @@
         }
 
         // Função para adicionar item ao carrinho
-        function addToCart(productId) {
+        function addToCart(productId, quantity = 1) {
             // Verifica se o produto já está no carrinho
             const existingItem = cart.find(item => item.id === productId);
             
             if (existingItem) {
                 // Incrementa a quantidade se já estiver no carrinho
-                existingItem.quantity += 1;
+                existingItem.quantity += quantity;
             } else {
                 // Encontra o produto na lista de produtos
                 const allProducts = [...featuredProducts, ...discountProducts];
@@ -184,7 +185,7 @@
                         name: productToAdd.name,
                         price: productToAdd.price,
                         image: productToAdd.image,
-                        quantity: 1
+                        quantity: quantity
                     });
                 }
             }
@@ -200,8 +201,10 @@
             const allProducts = [...featuredProducts, ...discountProducts];
             const productToAdd = allProducts.find(p => p.id === productId);
             if (productToAdd) {
-                showCartNotification(productToAdd);
+                showCartNotification(productToAdd, quantity);
             }
+
+            saveCartToStorage();
 
         }
         
@@ -209,6 +212,7 @@
         function removeFromCart(productId) {
             cart = cart.filter(item => item.id !== productId);
             updateCart();
+            saveCartToStorage();
         }
         
         // Função para alterar quantidade de um item
@@ -224,7 +228,9 @@
                 } else {
                     updateCart();
                 }
+                saveCartToStorage();
             }
+            
         }
 
         // Função para renderizar produtos
@@ -339,6 +345,23 @@
                     const productId = parseInt(cartItem.dataset.id);
                     removeFromCart(productId);
                 }
+
+                if (e.target.classList.contains('checkout-btn')) {
+                    e.preventDefault();
+                    
+                    // Verificar se há itens no carrinho
+                    if (cart.length === 0) {
+                        alert('Seu carrinho está vazio. Adicione produtos antes de finalizar a compra.');
+                        return;
+                    }
+                    
+                    // Gerar um ID de sessão fictício (como no exemplo do Megasom)
+                    const sessionId = generateSessionId();
+                    
+                    // Redirecionar para a página de checkout com os parâmetros
+                    window.location.href = `checkout.html?session_id=${sessionId}&store_id=1139574#carrinho`;
+                }
+
             });
             
             
@@ -383,3 +406,30 @@
                 renderProducts(filteredProducts, 'featured-products');
             }
         }
+
+        // Função para salvar o carrinho no localStorage
+        window.saveCartToStorage = function() {
+            localStorage.setItem('shoppingCart', JSON.stringify(cart));
+            updateCartCount(); // Atualiza o contador sempre que o carrinho é salvo
+        }
+
+        // Função para carregar o carrinho do localStorage
+        function loadCartFromStorage() {
+            const savedCart = localStorage.getItem('shoppingCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCart();
+            }
+        }
+
+        // Função para gerar um ID de sessão aleatório (simulando o comportamento do Megasom)
+        function generateSessionId() {
+            const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            for (let i = 0; i < 20; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        loadCartFromStorage(); // Carregar o carrinho salvo ao iniciar        

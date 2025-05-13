@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - Som & Acordes</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="top-bar">
+                <div class="logo">
+                    <a href="index.html">Som & <span>Acordes</span></a>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#"><i class="fas fa-user"></i> Minha Conta</a>
+                    <a href="#"><i class="fas fa-heart"></i> Favoritos</a>
+                    <a href="#" id="cart-icon"><i class="fas fa-shopping-cart"></i> Carrinho <span class="cart-count">0</span></a>
+                </div>
+            </div>
+        </div>
+        
+        <nav>
+            <div class="container">
+                <ul class="main-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Áudio</a></li>
+                    <li><a href="#">Instrumentos</a></li>
+                    <li><a href="#">Promoções</a></li>
+                    <li><a href="#">Lançamentos</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Conteúdo da Página de Checkout -->
+    <main class="checkout-page">
+        <div class="container">
+            <div class="checkout-header">
+                <h1>Finalizar Compra</h1>
+                <div class="checkout-steps">
+                    <div class="step active" id="step-cart">
+                        <span>1</span> Carrinho
+                    </div>
+                    <div class="step" id="step-address">
+                        <span>2</span> Endereço
+                    </div>
+                    <div class="step" id="step-payment">
+                        <span>3</span> Pagamento
+                    </div>
+                    <div class="step" id="step-confirmation">
+                        <span>4</span> Confirmação
+                    </div>
+                </div>
+            </div>
+            
+            <div class="checkout-content" id="carrinho">
+                <div class="checkout-cart">
+                    <h2>Seu Carrinho</h2>
+                    <div class="cart-items" id="checkout-cart-items">
+                        <!-- Itens serão preenchidos via JavaScript -->
+                    </div>
+                    
+                    <div class="cart-summary">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="cart-subtotal">R$ 0,00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Frete</span>
+                            <span id="cart-shipping">A calcular</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span id="cart-total">R$ 0,00</span>
+                        </div>
+                        
+                        <button class="btn btn-primary" id="proceed-to-address">Continuar</button>
+                    </div>
+                </div>
+                
+                <div class="checkout-login">
+                    <h3>Já é cliente?</h3>
+                    <p>Faça login para agilizar seu pedido.</p>
+                    <form class="login-form">
+                        <input type="email" placeholder="E-mail">
+                        <input type="password" placeholder="Senha">
+                        <button type="submit" class="btn btn-secondary">Entrar</button>
+                    </form>
+                    <a href="#" class="forgot-password">Esqueci minha senha</a>
+                    <!-- Esta div será preenchida dinamicamente quando o usuário fizer login -->
+                    <div class="logged-in-section" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- Mesmo footer das outras páginas -->
+                <!-- ... -->
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Som & Acordes - Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+<script>
+        // Garante que o script.js seja carregado primeiro
+        function loadScript(src, callback) {
+            const script = document.createElement('script');
+            script.src = src;
+            script.onload = callback;
+            document.body.appendChild(script);
+        }
+        
+        // Carrega script.js primeiro, depois checkout.js
+        loadScript('assets/js/script.js', function() {
+            const checkoutScript = document.createElement('script');
+            checkoutScript.src = 'assets/js/checkout.js';
+            document.body.appendChild(checkoutScript);
+        });
+    </script>
+
+    <script type="text/javascript" src="assets/js/script.js"></script>
+    <script type="text/javascript" src="assets/js/checkout.js"></script>
+
+</body>
+</html>
