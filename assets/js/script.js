@@ -230,7 +230,9 @@
         // Função para renderizar produtos
         function renderProducts(products, containerId) {
             const container = document.getElementById(containerId);
-            
+     
+            if (!container) return;
+
             products.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
@@ -265,8 +267,15 @@
                         <button class="add-to-cart">Adicionar ao Carrinho</button>
                     </div>
                 `;
-                
+
                 container.appendChild(productCard);
+                
+                productCard.addEventListener('click', function(e) {
+                    // Não redirecionar se o clique foi no botão de adicionar ao carrinho
+                    if (!e.target.classList.contains('add-to-cart') && !e.target.closest('.add-to-cart')) {
+                        window.location.href = `produto.html?id=${product.id}`;
+                    }
+                });
 
             });
         }
@@ -334,17 +343,19 @@
             
             
             // Adicionar evento de submit no formulário de newsletter
-            document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = this.querySelector('input').value;
-                if (email.includes('@')) {
-                    alert(`Obrigado por assinar nossa newsletter! Um e-mail foi enviado para ${email}`);
-                    this.querySelector('input').value = '';
-                } else {
-                    alert('Por favor, insira um e-mail válido.');
-                }
-            });
-
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input').value;
+                    if (email.includes('@')) {
+                        alert(`Obrigado por assinar nossa newsletter! Um e-mail foi enviado para ${email}`);
+                        this.querySelector('input').value = '';
+                    } else {
+                        alert('Por favor, insira um e-mail válido.');
+                    }
+                });
+            }
             // Fechar notificação do carrinho
             document.getElementById('close-notification').addEventListener('click', function() {
                 document.getElementById('cart-notification').style.display = 'none';
