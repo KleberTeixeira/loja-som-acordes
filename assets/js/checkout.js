@@ -216,8 +216,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('step-cart').classList.remove('active');
         document.getElementById('step-address').classList.add('active');
         
-        // Aqui você implementaria a lógica para mostrar a seção de endereço
-        alert('Próxima etapa: Informações de endereço');
     });
     
     // Verificar estado de login ao carregar a página
@@ -229,14 +227,6 @@ document.addEventListener('DOMContentLoaded', function() {
         updateLoginUI(false);
     }
     
-    
-
-
-
-
-
-
-
     // Inicializar a página
     updateCheckoutCart();
     
@@ -246,5 +236,59 @@ document.addEventListener('DOMContentLoaded', function() {
     if (window.location.hash === '#carrinho') {
         document.getElementById('carrinho').scrollIntoView();
     }
+
+
+
+
+
+
+
+
+
+    // Botão "Continuar para Endereço"
+    document.getElementById('proceed-to-address').addEventListener('click', function(e) {
+        e.preventDefault();
+
+        // Verifica se há itens no carrinho
+        if (cart.length === 0) {
+            alert('Seu carrinho está vazio. Adicione produtos antes de continuar.');
+            return;
+        }
+
+        // Verifica se o usuário está logado
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        if (!loggedInUser) {
+            alert('Por favor, faça login para continuar.');
+            return;
+        }
+
+        // Oculta a seção do carrinho
+        document.querySelector('.checkout-cart').style.display = 'none';
+        document.querySelector('.checkout-login').style.display = 'none';
+
+        // Mostra a seção de endereço
+        document.getElementById('address-section').style.display = 'block';
+
+        // Atualiza a barra de progresso
+        document.getElementById('step-cart').classList.remove('active');
+        document.getElementById('step-address').classList.add('active');
+
+        // Simulação de busca de CEP (opcional)
+        document.getElementById('search-cep').addEventListener('click', function() {
+            alert('CEP buscado com sucesso! (Integração com API de CEP pode ser adicionada aqui)');
+        });
+
+        // Validação do formulário de endereço
+        document.querySelector('.address-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Endereço salvo! Redirecionando para pagamento...');
+            // Aqui você pode adicionar a lógica para avançar para a próxima etapa
+        });
+    });
+
+
+
+
+
 
 });
