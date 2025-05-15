@@ -88,8 +88,8 @@
                     <h3>Já é cliente?</h3>
                     <p>Faça login para agilizar seu pedido.</p>
                     <form class="login-form">
-                        <input type="email" placeholder="E-mail">
-                        <input type="password" placeholder="Senha">
+                        <input type="email" placeholder="E-mail" autocomplete="email" id="email">
+                        <input type="password" placeholder="Senha" id="senha">
                         <button type="submit" class="btn btn-secondary">Entrar</button>
                     </form>
                     <a href="#" class="forgot-password">Esqueci minha senha</a>
@@ -112,23 +112,6 @@
             </div>
         </div>
     </footer>
-
-<script>
-        // Garante que o script.js seja carregado primeiro
-        function loadScript(src, callback) {
-            const script = document.createElement('script');
-            script.src = src;
-            script.onload = callback;
-            document.body.appendChild(script);
-        }
-        
-        // Carrega script.js primeiro, depois checkout.js
-        loadScript('assets/js/script.js', function() {
-            const checkoutScript = document.createElement('script');
-            checkoutScript.src = 'assets/js/checkout.js';
-            document.body.appendChild(checkoutScript);
-        });
-    </script>
 
     <script type="text/javascript" src="assets/js/script.js"></script>
     <script type="text/javascript" src="assets/js/checkout.js"></script>
