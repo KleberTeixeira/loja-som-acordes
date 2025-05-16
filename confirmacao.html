@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Pedido - Som & Acordes</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="top-bar">
+                <div class="logo">
+                    <a href="index.html">Som & <span>Acordes</span></a>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="O que você está procurando?">
+                    <button><i class="fas fa-search"></i> Buscar</button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#"><i class="fas fa-user"></i> Minha Conta</a>
+                    <a href="#"><i class="fas fa-heart"></i> Favoritos</a>
+                    <a href="#" id="cart-icon"><i class="fas fa-shopping-cart"></i> Carrinho <span class="cart-count">0</span></a>
+                </div>
+            </div>
+        </div>
+        
+        <nav>
+            <div class="container">
+                <ul class="main-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Áudio</a></li>
+                    <li><a href="#">Instrumentos</a></li>
+                    <li><a href="#">Promoções</a></li>
+                    <li><a href="#">Lançamentos</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Conteúdo da Confirmação -->
+    <main class="confirmation-page">
+        <div class="container">
+            <div class="confirmation-card">
+                <div class="confirmation-header">
+                    <i class="fas fa-check-circle"></i>
+                    <h1>Pedido Confirmado!</h1>
+                    <p id="order-number">Nº do Pedido: PED12345678</p>
+                </div>
+                
+                <div class="confirmation-details">
+                    <div class="detail-row">
+                        <span>Data do Pedido:</span>
+                        <span id="order-date">01/01/2023</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Método de Pagamento:</span>
+                        <span id="payment-method">Cartão de Crédito</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Total:</span>
+                        <span id="order-total">R$ 0,00</span>
+                    </div>
+                </div>
+                
+                <div class="confirmation-actions">
+                    <a href="index.html" class="btn btn-primary">Voltar à Loja</a>
+                    <a href="#" class="btn btn-secondary">Acompanhar Pedido</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Sobre Nós</h4>
+                    <ul>
+                        <li><a href="#">Quem Somos</a></li>
+                        <li><a href="#">Nossas Lojas</a></li>
+                        <li><a href="#">Trabalhe Conosco</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Atendimento</h4>
+                    <ul>
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Meus Pedidos</a></li>
+                        <li><a href="#">Trocas e Devoluções</a></li>
+                        <li><a href="#">Fale Conosco</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Formas de Pagamento</h4>
+                    <ul>
+                        <li><a href="#">Cartões de Crédito</a></li>
+                        <li><a href="#">Boleto Bancário</a></li>
+                        <li><a href="#">PIX</a></li>
+                        <li><a href="#">Parcelamento</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Som & Acordes - Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Preenche os dados do pedido
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const pedidoId = urlParams.get('pedido');
+            
+            if (pedidoId) {
+                document.getElementById('order-number').textContent = `Nº do Pedido: ${pedidoId}`;
+                
+                // Em produção, você buscaria os detalhes do pedido de uma API
+                // Aqui estamos simulando com dados do localStorage
+                const historico = JSON.parse(localStorage.getItem('historicoPedidos') || [];
+                const pedido = historico.find(p => p.id === pedidoId);
+                
+                if (pedido) {
+                    const data = new Date(pedido.data);
+                    document.getElementById('order-date').textContent = data.toLocaleDateString('pt-BR');
+                    document.getElementById('payment-method').textContent = 
+                        pedido.pagamento === 'credit-card' ? 'Cartão de Crédito' :
+                        pedido.pagamento === 'pix' ? 'PIX' : 'Boleto Bancário';
+                    document.getElementById('order-total').textContent = `R$ ${pedido.total.toFixed(2).replace('.', ',')}`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
