@@ -56,44 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
         { email: 'outro@cliente.com', password: 'musica123', name: 'Maria Souza' }
     ];
     
-    // Função para formatar preço
-    function formatPrice(price) {
-        return 'R$ ' + price.toFixed(2).replace('.', ',');
-    }
-    
-    // Função para calcular o total do carrinho
-    function calculateCartTotal() {
-        return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-    }
-    
-    // Atualizar a exibição do carrinho
-    function updateCheckoutCart() {
-        // Limpar itens atuais
-        cartItemsContainer.innerHTML = '';
-        
-        // Adicionar cada item
-        cart.forEach(item => {
-            const itemElement = document.createElement('div');
-            itemElement.className = 'checkout-cart-item';
-            itemElement.innerHTML = `
-                <div class="item-image">
-                    <img src="${item.image}" alt="${item.name}">
-                </div>
-                <div class="item-details">
-                    <h4 class="item-name">${item.name}</h4>
-                    <div class="item-price">${formatPrice(item.price)}</div>
-                    <div class="item-quantity">Quantidade: ${item.quantity}</div>
-                </div>
-                <div class="item-total">${formatPrice(item.price * item.quantity)}</div>
-            `;
-            cartItemsContainer.appendChild(itemElement);
-        });
-        
-        // Atualizar totais
-        const subtotal = calculateCartTotal();
-        cartSubtotalElement.textContent = formatPrice(subtotal);
-        cartTotalElement.textContent = formatPrice(subtotal); // Neste exemplo, não estamos calculando frete
-    }
     
     // Adicione esta função para manter consistência com script.js
     function updateCartCount() {

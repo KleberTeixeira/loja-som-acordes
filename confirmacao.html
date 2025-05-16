@@ -130,11 +130,11 @@
             const pedidoId = urlParams.get('pedido');
             
             if (pedidoId) {
-                document.getElementById('order-number').textContent = `Nº do Pedido: ${pedidoId}`;
+                    document.getElementById('order-number').textContent = `Nº do Pedido: ${pedidoId}`;
                 
                 // Em produção, você buscaria os detalhes do pedido de uma API
                 // Aqui estamos simulando com dados do localStorage
-                const historico = JSON.parse(localStorage.getItem('historicoPedidos') || [];
+                const historico = JSON.parse(localStorage.getItem('historicoPedidos') || []);
                 const pedido = historico.find(p => p.id === pedidoId);
                 
                 if (pedido) {
