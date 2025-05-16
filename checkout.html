@@ -91,14 +91,18 @@
 
 
 
-
+                <!--Seção de endereço-->
                 <div class="checkout-address" id="address-section" style="display: none;">
                     <h2>Informações de Entrega</h2>
                     <form class="address-form">
-                        <div class="form-group">
+                        <div class="form-group full-width">
                             <label for="cep">CEP</label>
-                            <input type="text" id="cep" placeholder="Digite seu CEP" required>
-                            <button type="button" id="search-cep" class="btn btn-secondary">Buscar</button>
+                            <div class="cep-container">
+                                <input type="text" id="cep" placeholder="Digite seu CEP" required maxlength="9"
+                                    onkeypress="formatarCEP(event)">
+                                <button type="button" id="search-cep" class="btn btn-secondary">Buscar</button>
+                            </div>
+                            <div id="cep-error" class="error-message" style="display: none;"></div>
                         </div>
                         <div class="form-group">
                             <label for="street">Rua</label>
@@ -122,15 +126,97 @@
                         </div>
                         <div class="form-group">
                             <label for="state">Estado</label>
-                            <input type="text" id="state" required>
+                            <input type="text" id="state" required maxlength="2">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group full-width">
                             <label for="reference">Ponto de Referência</label>
                             <input type="text" id="reference">
                         </div>
                         <button type="submit" class="btn btn-primary" id="proceed-to-payment">Continuar para Pagamento</button>
                     </form>
                 </div>
+
+
+
+
+
+
+
+
+                <!-- Seção de Pagamento -->
+                <div class="checkout-payment" id="payment-section" style="display: none;">
+                    <h2>Método de Pagamento</h2>
+                    <form class="payment-form">
+                        <div class="payment-methods">
+                            <div class="payment-method">
+                                <input type="radio" id="credit-card" name="payment-method" value="credit-card" checked>
+                                <label for="credit-card">
+                                    <i class="fas fa-credit-card"></i> Cartão de Crédito
+                                </label>
+                            </div>
+                            <div class="payment-method">
+                                <input type="radio" id="pix" name="payment-method" value="pix">
+                                <label for="pix">
+                                    <i class="fas fa-qrcode"></i> PIX
+                                </label>
+                            </div>
+                            <div class="payment-method">
+                                <input type="radio" id="boleto" name="payment-method" value="boleto">
+                                <label for="boleto">
+                                    <i class="fas fa-barcode"></i> Boleto Bancário
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Formulário de Cartão de Crédito (visível por padrão) -->
+                        <div class="credit-card-form" id="credit-card-form">
+                            <div class="form-group">
+                                <label for="card-number">Número do Cartão</label>
+                                <input type="text" id="card-number" placeholder="0000 0000 0000 0000" maxlength="19">
+                            </div>
+                            <div class="form-group">
+                                <label for="card-name">Nome no Cartão</label>
+                                <input type="text" id="card-name" placeholder="Como escrito no cartão">
+                            </div>
+                            <div class="form-group-row">
+                                <div class="form-group">
+                                    <label for="card-expiry">Validade</label>
+                                    <input type="text" id="card-expiry" placeholder="MM/AA" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-cvv">CVV</label>
+                                    <input type="text" id="card-cvv" placeholder="000" maxlength="4">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="card-installments">Parcelamento</label>
+                                <select id="card-installments">
+                                    <option value="1">1x de R$ 0,00 sem juros</option>
+                                    <!-- Opções serão preenchidas via JavaScript -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Formulário PIX (inicialmente oculto) -->
+                        <div class="pix-form" id="pix-form" style="display: none;">
+                            <div class="pix-info">
+                                <p>Você receberá um QR Code para pagamento via PIX após finalizar o pedido.</p>
+                                <p>O pagamento é processado instantaneamente.</p>
+                            </div>
+                        </div>
+
+                        <!-- Formulário Boleto (inicialmente oculto) -->
+                        <div class="boleto-form" id="boleto-form" style="display: none;">
+                            <div class="boleto-info">
+                                <p>O boleto bancário será gerado após a finalização do pedido.</p>
+                                <p>O prazo para pagamento é de 1 dia útil.</p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="finalize-purchase">Finalizar Compra</button>
+                    </form>
+                </div>
+
 
 
 
@@ -165,14 +251,56 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <!-- Mesmo footer das outras páginas -->
-                <!-- ... -->
+                <div class="footer-column">
+                    <h4>Sobre Nós</h4>
+                    <ul>
+                        <li><a href="#">Quem Somos</a></li>
+                        <li><a href="#">Nossas Lojas</a></li>
+                        <li><a href="#">Trabalhe Conosco</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Atendimento</h4>
+                    <ul>
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Meus Pedidos</a></li>
+                        <li><a href="#">Trocas e Devoluções</a></li>
+                        <li><a href="#">Fale Conosco</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Formas de Pagamento</h4>
+                    <ul>
+                        <li><a href="#">Cartões de Crédito</a></li>
+                        <li><a href="#">Boleto Bancário</a></li>
+                        <li><a href="#">PIX</a></li>
+                        <li><a href="#">Parcelamento</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
             </div>
             <div class="copyright">
                 <p>&copy; 2025 Som & Acordes - Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Overlay de carregamento -->
+    <div id="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Processando seu pagamento...</p>
+        </div>
+    </div>    
 
     <script type="text/javascript" src="assets/js/script.js"></script>
     <script type="text/javascript" src="assets/js/checkout.js"></script>

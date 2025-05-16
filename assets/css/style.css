@@ -1159,6 +1159,233 @@ footer {
     grid-column: span 2;
 }
 
+/* Estilos para a integração do CEP */
+.cep-container {
+    display: flex;
+    gap: 10px;
+}
+
+.cep-container input {
+    flex: auto;
+}
+
+.error-message {
+    color: #d32f2f;
+    font-size: 13px;
+    margin-top: 5px;
+    display: none;
+}
+
+.loading-cep {
+    position: relative;
+}
+
+.loading-cep::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(0,0,0,0.1);
+    border-radius: 50%;
+    border-top-color: #1a2a6c;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Estilos para a seção de pagamento */
+.checkout-payment {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.payment-methods {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.payment-method {
+    flex: 1;
+    min-width: 120px;
+}
+
+.payment-method input {
+    display: none;
+}
+
+.payment-method label {
+    display: block;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid #ddd;
+}
+
+.payment-method input:checked + label {
+    background: #1a2a6c;
+    color: white;
+    border-color: #1a2a6c;
+}
+
+.payment-method i {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.credit-card-form,
+.pix-form,
+.boleto-form {
+    margin-top: 20px;
+}
+
+.form-group-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-group-row .form-group {
+    flex: 1;
+}
+
+#card-number {
+    letter-spacing: 1px;
+}
+
+/* Estilos para o formulário de cartão */
+#card-installments {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+}
+
+.pix-info,
+.boleto-info {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.pix-info p,
+.boleto-info p {
+    margin-bottom: 10px;
+}
+
+/* Estilos para o overlay de carregamento */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.loading-spinner {
+    text-align: center;
+}
+
+.loading-spinner i {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.loading-spinner p {
+    font-size: 18px;
+}
+
+/* Estilos para a página de confirmação */
+.confirmation-page {
+    padding: 40px 0;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.confirmation-card {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.confirmation-header {
+    margin-bottom: 30px;
+}
+
+.confirmation-header i {
+    font-size: 60px;
+    color: #4CAF50;
+    margin-bottom: 15px;
+}
+
+.confirmation-header h1 {
+    color: #1a2a6c;
+    margin-bottom: 10px;
+}
+
+.confirmation-details {
+    margin: 30px 0;
+    text-align: left;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.detail-row span:first-child {
+    color: #666;
+}
+
+.detail-row span:last-child {
+    font-weight: bold;
+}
+
+.confirmation-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.confirmation-actions .btn {
+    flex: 1;
+}
+
+
+
+
+
+
 
 /* Responsivo */
 @media (max-width: 768px) {
