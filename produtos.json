@@ -1,0 +1,41 @@
+{
+  "featuredProducts": [
+    {
+      "id": 1,
+      "name": "Sax Alto",
+      "price": 3500.00,
+      "image": "assets/img/produto_01.jpg",
+      "installments": "10x de R$ 350,00 sem juros",
+      "description": "Com acabamento refinado e construção durável, ele oferece afinação precisa e resposta ágil em todas as oitavas.",
+      "category": "sopro"
+    },
+    {
+      "id": 2,
+      "name": "Violão Folk Cutaway",
+      "price": 1400.00,
+      "image": "assets/img/produto_02.png",
+      "installments": "10x de R$ 140,00 sem juros",
+      "description": "Seu design com recorte no corpo (cutaway) permite maior mobilidade no braço, tornando-o ideal para solos e arranjos mais elaborados.",
+      "category": "cordas"
+    },
+    {
+      "id": 3,
+      "name": "Guitarra Fender",
+      "price": 7730.00,
+      "image": "assets/img/produto_03.jpeg",
+      "installments": "10x de R$ 773,00 sem juros",
+      "description": "Reconhecida mundialmente, a Fender entrega versatilidade e performance excepcionais, sendo ideal para diversos estilos musicais, como rock, blues, jazz e pop.",
+      "category": "cordas"
+    },
+    {
+      "id": 4,
+      "name": "Bateria Yamaha",
+      "price": 6890.00,
+      "image": "assets/img/produto_04.png",
+      "installments": "10x de R$ 689,00 sem juros",
+      "description": "Com a qualidade inconfundível da Yamaha, esse kit oferece equilíbrio entre graves profundos, médios definidos e agudos brilhantes, atendendo desde iniciantes até músicos profissionais.",
+      "category": "percussao"
+    }
+
+  ]
+}

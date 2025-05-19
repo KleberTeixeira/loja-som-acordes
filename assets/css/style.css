@@ -216,7 +216,6 @@ nav {
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -229,17 +228,25 @@ nav {
     padding: 20px;
 }
 
-.product-image img {
-
-    height: 400px;
-    width: 200px;
-    /*
-    max-height: 100%;
-    max-width: 100%;
-    */
-    object-fit: cover;
+/* Estilo para preço original riscado */
+.original-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 16px;
+    margin-right: 10px;
 }
 
+/* Melhoria no carregamento de imagens */
+.product-image img {
+    width: 200px;
+    height: 400px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.03);
+}
 .product-info {
     padding: 15px;
     display: flex;
