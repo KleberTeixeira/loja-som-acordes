@@ -61,8 +61,6 @@ function simularProgressoPedido(pedido) {
     const dataPedido = new Date(pedido.data);
     const agora = new Date();
     const diffHoras = (agora - dataPedido) / (1000 * 60 * 60);
-    console.log(agora - dataPedido);
-    console.log(diffHoras);
     
     // Define os estágios do pedido baseado no tempo decorrido
     if (diffHoras < 2) {

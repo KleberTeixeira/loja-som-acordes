@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finalizar Compra - Som & Acordes</title>
+    <title>Endereço de Entrega - Som & Acordes</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -38,63 +38,75 @@
         </nav>
     </header>
     
-    <!-- Conteúdo da Página de Checkout -->
+    <!-- Conteúdo da Página de Endereço -->
     <main class="checkout-page">
         <div class="container">
             <div class="checkout-header">
-                <h1>Finalizar Compra</h1>
+                <h1>Endereço de Entrega</h1>
                 <div class="checkout-steps">
-                    <div class="step active" id="step-cart">
+                    <div class="step">
                         <span>1</span> Carrinho
                     </div>
-                    <div class="step" id="step-address">
+                    <div class="step active">
                         <span>2</span> Endereço
                     </div>
-                    <div class="step" id="step-payment">
+                    <div class="step">
                         <span>3</span> Pagamento
                     </div>
-                    <div class="step" id="step-confirmation">
+                    <div class="step">
                         <span>4</span> Confirmação
                     </div>
                 </div>
             </div>
             
-            <div class="checkout-content" id="carrinho">
-                <div class="checkout-cart">
-                    <h2>Seu Carrinho</h2>
-                    <div class="cart-items" id="checkout-cart-items">
-                        <!-- Itens serão preenchidos via JavaScript -->
-                    </div>
-                    
-                    <div class="cart-summary">
-                        <div class="summary-row">
-                            <span>Subtotal</span>
-                            <span id="cart-subtotal">R$ 0,00</span>
+            <div class="checkout-content">
+                <div class="checkout-address">
+                    <h2>Informações de Entrega</h2>
+                    <form class="address-form" id="address-form">
+                        <div class="form-group full-width">
+                            <label for="cep">CEP</label>
+                            <div class="cep-container">
+                                <input type="text" id="cep" placeholder="Digite seu CEP" required maxlength="9"
+                                    onkeypress="formatarCEP(event)">
+                                <button type="button" id="search-cep" class="btn btn-secondary">
+                                    <span id="search-cep-text">Buscar</span>
+                                    <span id="search-cep-spinner" style="display: none;">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </span>
+                                </button>
+                            </div>
+                            <div id="cep-error" class="error-message"></div>
                         </div>
-                        <div class="summary-row">
-                            <span>Frete</span>
-                            <span id="cart-shipping">A calcular</span>
+                        <div class="form-group">
+                            <label for="street">Rua</label>
+                            <input type="text" id="street" required>
                         </div>
-                        <div class="summary-row total">
-                            <span>Total</span>
-                            <span id="cart-total">R$ 0,00</span>
+                        <div class="form-group">
+                            <label for="number">Número</label>
+                            <input type="text" id="number" required>
                         </div>
-                        
-                        <button class="btn btn-primary" id="proceed-to-address">Continuar</button>
-                    </div>
-                </div>
-
-                <div class="checkout-login">
-                    <form class="login-form">
-                        <h3>Já é cliente?</h3>
-                        <p>Faça login para agilizar seu pedido.</p>
-                        <input type="email" placeholder="E-mail" autocomplete="email" id="email">
-                        <input type="password" placeholder="Senha" id="senha">
-                        <button type="submit" class="btn btn-secondary">Entrar</button>
-                        <a href="#" class="forgot-password">Esqueci minha senha</a>
+                        <div class="form-group">
+                            <label for="complement">Complemento</label>
+                            <input type="text" id="complement">
+                        </div>
+                        <div class="form-group">
+                            <label for="neighborhood">Bairro</label>
+                            <input type="text" id="neighborhood" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">Cidade</label>
+                            <input type="text" id="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state">Estado</label>
+                            <input type="text" id="state" required maxlength="2">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="reference">Ponto de Referência</label>
+                            <input type="text" id="reference">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="proceed-to-payment">Continuar para Pagamento</button>
                     </form>
-                    <!-- Esta div será preenchida dinamicamente quando o usuário fizer login -->
-                    <div class="logged-in-section"></div>
                 </div>
             </div>
         </div>
@@ -148,6 +160,6 @@
     </footer>
 
     <script type="text/javascript" src="assets/js/script.js"></script>
-    <script type="text/javascript" src="assets/js/checkout.js"></script>
+    <script type="text/javascript" src="assets/js/endereco.js"></script>
 </body>
 </html>

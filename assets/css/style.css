@@ -1555,6 +1555,36 @@ footer {
     color: white;
 }
 
+/* Estilo para o campo de CEP durante o carregamento */
+.loading-cep {
+    position: relative;
+}
+
+.loading-cep::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ccc;
+    border-top-color: #333;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Estilo para mensagens de erro */
+.error-message {
+    color: #d32f2f;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}
 
 
 
