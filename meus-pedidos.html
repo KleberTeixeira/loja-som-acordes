@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Pedidos - Som & Acordes</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="top-bar">
+                <div class="logo">
+                    <a href="index.html">Som & <span>Acordes</span></a>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="O que você está procurando?">
+                    <button><i class="fas fa-search"></i> Buscar</button>
+                </div>
+                <div class="user-actions">
+                    <a href="#"><i class="fas fa-user"></i> Minha Conta</a>
+                    <a href="#"><i class="fas fa-heart"></i> Favoritos</a>
+                    <a href="#" id="cart-icon"><i class="fas fa-shopping-cart"></i> Carrinho <span class="cart-count">0</span></a>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul class="main-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Áudio</a></li>
+                    <li><a href="#">Instrumentos</a></li>
+                    <li><a href="#">Promoções</a></li>
+                    <li><a href="#">Lançamentos</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="container my-orders">
+        <h1>Meus Pedidos</h1>
+        
+        <div class="orders-list">
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-number">Pedido #PED123456</div>
+                    <div class="order-date">01/01/2025</div>
+                    <div class="order-status delivered">Entregue</div>
+                </div>
+                <div class="order-products">
+                    <div class="product-item">
+                        <img src="assets/img/produto_01.jpg" alt="Sax Alto">
+                        <div class="product-info">
+                            <h4>Sax Alto</h4>
+                            <p>Quantidade: 1</p>
+                            <p>R$ 3.500,00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-footer">
+                    <div class="order-total">Total: R$ 3.500,00</div>
+                    <div class="order-actions">
+                        <a href="#" class="btn btn-secondary">Detalhes</a>
+                        <a href="#" class="btn btn-outline">Comprar Novamente</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-number">Pedido #PED789012</div>
+                    <div class="order-date">15/12/2024</div>
+                    <div class="order-status shipping">Em Transporte</div>
+                </div>
+                <div class="order-products">
+                    <div class="product-item">
+                        <img src="assets/img/produto_02.png" alt="Violão Folk Cutaway">
+                        <div class="product-info">
+                            <h4>Violão Folk Cutaway</h4>
+                            <p>Quantidade: 1</p>
+                            <p>R$ 1.400,00</p>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <img src="assets/img/produto_03.jpeg" alt="Guitarra Fender">
+                        <div class="product-info">
+                            <h4>Guitarra Fender</h4>
+                            <p>Quantidade: 1</p>
+                            <p>R$ 7.730,00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-footer">
+                    <div class="order-total">Total: R$ 9.130,00</div>
+                    <div class="order-actions">
+                        <a href="#" class="btn btn-secondary">Detalhes</a>
+                        <a href="#" class="btn btn-outline">Acompanhar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="empty-orders" style="display: none;">
+            <i class="fas fa-box-open"></i>
+            <h3>Você ainda não fez nenhum pedido</h3>
+            <p>Quando fizer um pedido, você poderá acompanhá-lo aqui.</p>
+            <a href="index.html" class="btn btn-primary">Ir para a loja</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Sobre Nós</h4>
+                    <ul>
+                        <li><a href="sobre.html">Quem Somos</a></li>
+                        <li><a href="lojas.html">Nossas Lojas</a></li>
+                        <li><a href="trabalhe-conosco.html">Trabalhe Conosco</a></li>
+                        <li><a href="politica-privacidade.html">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Atendimento</h4>
+                    <ul>
+                        <li><a href="ajuda.html">Central de Ajuda</a></li>
+                        <li><a href="meus-pedidos.html">Meus Pedidos</a></li>
+                        <li><a href="trocas-devolucoes.html">Trocas e Devoluções</a></li>
+                        <li><a href="contato.html">Fale Conosco</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Formas de Pagamento</h4>
+                    <ul>
+                        <li><a href="pagamentos.html#cartoes">Cartões de Crédito</a></li>
+                        <li><a href="pagamentos.html#boleto">Boleto Bancário</a></li>
+                        <li><a href="pagamentos.html#pix">PIX</a></li>
+                        <li><a href="pagamentos.html#parcelamento">Parcelamento</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="https://facebook.com/som&acordes" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/som&acordes" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/som&acordes" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                        <a href="https://twitter.com/som&acordes" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Som & Acordes - Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

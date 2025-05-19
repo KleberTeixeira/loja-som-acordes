@@ -7,45 +7,8 @@ const cartItemsContainer = document.getElementById('cart-items');
 const cartTotalElement = document.getElementById('cart-total');
 const cartCountElement = document.querySelector('.cart-count');
 
-// Dados dos produtos
-const featuredProducts = [
-    {
-        id: 1,
-        name: "Sax Alto",
-        price: 3500.00,
-        image: "assets/img/produto_01.jpg",
-        installments: "10x de R$ 350,00 sem juros",
-        descricao: "com acabamento refinado e construção durável, ele oferece afinação precisa e resposta ágil em todas as oitavas.",
-        category: "sopro"
-    },
-    {
-        id: 2,
-        name: "Violão Folk Cutaway",
-        price: 1400.00,
-        image: "assets/img/produto_02.png",
-        installments: "10x de R$ 140,00 sem juros",
-        descricao: "seu design com recorte no corpo (cutaway) permite maior mobilidade no braço, tornando-o ideal para solos e arranjos mais elaborados.",
-        category: "cordas"
-    },
-    {
-        id: 3,
-        name: "Guitarra Fender",
-        price: 7730.00,
-        image: "assets/img/produto_03.jpeg",
-        installments: "10x de R$ 773,00 sem juros",
-        descricao: "reconhecida mundialmente, a Fender entrega versatilidade e performance excepcionais, sendo ideal para diversos estilos musicais, como rock, blues, jazz e pop.",
-        category: "cordas"
-    },
-    {
-        id: 4,
-        name: "Bateria Yamaha",
-        price: 6890.00,
-        image: "assets/img/produto_04.png",
-        installments: "10x de R$ 689,00 sem juros",
-        descricao: "com a qualidade inconfundível da Yamaha, esse kit oferece equilíbrio entre graves profundos, médios definidos e agudos brilhantes, atendendo desde iniciantes até músicos profissionais.",
-        category: "percussao"
-    }
-];
+// Produtos
+let featuredProducts = [];
 
 // Carrinho de compras
 let cart = [];
@@ -146,7 +109,7 @@ function addToCart(productId, quantity = 1) {
         existingItem.quantity += quantity;
     } else {
         // Encontra o produto na lista de produtos
-        const allProducts = [...featuredProducts, ...discountProducts];
+        const allProducts = [...featuredProducts];
         const productToAdd = allProducts.find(product => product.id === productId);
         
         if (productToAdd) {
@@ -169,7 +132,7 @@ function addToCart(productId, quantity = 1) {
     //alert(`${productName} foi adicionado ao carrinho!`);
 
     // Mostrar notificação
-    const allProducts = [...featuredProducts, ...discountProducts];
+    const allProducts = [...featuredProducts];
     const productToAdd = allProducts.find(p => p.id === productId);
     if (productToAdd) {
         showCartNotification(productToAdd, quantity);
@@ -207,16 +170,18 @@ function changeQuantity(productId, change) {
 // Função para carregar produtos do JSON
 async function loadProducts() {
     try {
-        const response = await fetch('products.json');
+        const response = await fetch('produtos.json');
         if (!response.ok) {
             throw new Error('Falha ao carregar produtos');
         }
-        return await response.json();
+        const data = await response.json();
+        featuredProducts = data.featuredProducts; // Armazena os produtos na variável global
+        return data;
     } catch (error) {
         console.error('Erro ao carregar produtos:', error);
+        featuredProducts = []; // Mantém vazio em caso de erro
         return {
-            featuredProducts: [],
-            discountProducts: []
+            featuredProducts: []
         };
     }
 }
@@ -254,7 +219,7 @@ function renderProducts(products, containerId) {
                 <h3 class="product-name">${product.name}</h3>
                 ${priceHTML}
                 <div class="installment">${product.installments}</div>
-                <div class="description">
+                <div class="descricao">
                     <p>${product.description || ''}</p>
                 </div>
                 <button class="add-to-cart">Adicionar ao Carrinho</button>
@@ -265,7 +230,10 @@ function renderProducts(products, containerId) {
         
         // Adiciona evento de clique no produto
         productCard.addEventListener('click', function(e) {
+            // Impede o comportamento padrão do clique
+            e.preventDefault();            
             if (!e.target.classList.contains('add-to-cart') && !e.target.closest('.add-to-cart')) {
+                localStorage.setItem('selectedProduct', JSON.stringify(product));
                 window.location.href = `produto.html?id=${product.id}`;
             }
         });
@@ -273,15 +241,16 @@ function renderProducts(products, containerId) {
 }
 
 // Renderizar produtos quando a página carregar
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
 
-    // Carrega produtos do JSON
-    const productsData = await loadProducts();
-    
+    // Carrega produtos do JSON e armazena em featuredProducts
+    await loadProducts();
+
     // Renderiza os produtos
     if (document.getElementById('featured-products')) {
-        renderProducts(productsData.featuredProducts, 'featured-products');
+        renderProducts(featuredProducts, 'featured-products');
     }
+
     // Adiciona evento de clique nas categorias
     document.querySelectorAll('.category-card').forEach(card => {
         card.addEventListener('click', function() {
@@ -393,6 +362,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function filterProductsByCategory(category) {
     const productsGrid = document.getElementById('featured-products');
+    if (!productsGrid) return;
+    
     productsGrid.innerHTML = ''; // Limpa os produtos atuais
     
     if (category === 'all') {
