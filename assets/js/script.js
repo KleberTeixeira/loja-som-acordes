@@ -210,7 +210,8 @@ function renderProducts(products, containerId) {
                 </div>
             `;
         }
-        
+
+        /*
         productCard.innerHTML = `
             <div class="product-image">
                 <img src="${product.image}" alt="${product.name}" loading="lazy">
@@ -222,6 +223,19 @@ function renderProducts(products, containerId) {
                 <div class="descricao">
                     <p>${product.description || ''}</p>
                 </div>
+                <button class="add-to-cart">Adicionar ao Carrinho</button>
+            </div>
+        `;
+        */
+
+        productCard.innerHTML = `
+            <div class="product-image">
+                <img src="${product.image}" alt="${product.name}" loading="lazy">
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">${product.name}</h3>
+                ${priceHTML}
+                <div class="installment">${product.installments}</div>
                 <button class="add-to-cart">Adicionar ao Carrinho</button>
             </div>
         `;

@@ -35,6 +35,26 @@
       "installments": "10x de R$ 689,00 sem juros",
       "description": "Com a qualidade inconfundível da Yamaha, esse kit oferece equilíbrio entre graves profundos, médios definidos e agudos brilhantes, atendendo desde iniciantes até músicos profissionais.",
       "category": "percussao"
+    },
+
+    {
+      "id": 5,
+      "name": "Teclado Yamaha",
+      "price": 8290.00,
+      "image": "assets/img/TECLADO-YAMAHA-PSRE473_IMG1.png",
+      "installments": "10x de R$ 829,00 sem juros",
+      "description": "A série PSR-400 é uma ótima opção de 61 teclas que é ideal para quem está iniciando, mas também representa uma alternativa robusta para músicos experientes. O mais recente PSR-473 apresenta um gerador de tom recém desenvolvido que proporciona melhorias fabulosas na qualidade do som, assim como efeitos de alta qualidade, como delays.",
+      "category": "teclas"
+    },
+
+    {
+      "id": 6,
+      "name": "Teclado Yamaha",
+      "price": 3500.00,
+      "image": "assets/img/teclado yamaha.png",
+      "installments": "10x de R$ 350,00 sem juros",
+      "description": "Com 61 teclas sensíveis ao toque, o teclado EZ-300 vem com teclas iluminadas especiais e um design portátil, ideal para iniciantes. Com este elegante e abrangente instrumento, você pratica, toca e executa com várias funções de lição e sons de instrumentos autênticos.",
+      "category": "teclas"
     }
 
   ]
