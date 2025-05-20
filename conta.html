@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta - Som & Acordes</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header (igual ao index.html) -->
+    <header>
+        <div class="container">
+            <div class="top-bar">
+                <div class="logo">
+                    <a href="index.html">Som & <span>Acordes</span></a>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="O que você está procurando?">
+                    <button><i class="fas fa-search"></i> Buscar</button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+                    <a href="conta.html"><i class="fas fa-user"></i> Minha Conta</a>
+                    <a href="#" id="cart-icon"><i class="fas fa-shopping-cart"></i> Carrinho <span class="cart-count">0</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo da Página de Conta -->
+    <main class="container account-page">
+        <div class="account-container">
+            <div class="account-tabs">
+                <button class="tab-btn active" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="register">Cadastro</button>
+            </div>
+            
+            <div class="tab-content active" id="login">
+                <h2>Login</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">E-mail</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Senha</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn">Entrar</button>
+                    <a href="#" class="forgot-password">Esqueci minha senha</a>
+                </form>
+            </div>
+            
+            <div class="tab-content" id="register">
+                <h2>Cadastre-se</h2>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-name">Nome Completo</label>
+                        <input type="text" id="register-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">E-mail</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Senha</label>
+                        <input type="password" id="register-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm">Confirme a Senha</label>
+                        <input type="password" id="register-confirm" required>
+                    </div>
+                    <button type="submit" class="btn">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (igual ao index.html) -->
+    <footer>
+        <!-- ... conteúdo igual ao do index.html ... -->
+    </footer>
+
+    <script>
+        // Lógica para alternar entre abas
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove classe active de todos os botões e conteúdos
+                document.querySelectorAll('.tab-btn, .tab-content').forEach(el => {
+                    el.classList.remove('active');
+                });
+                
+                // Adiciona classe active no botão clicado e conteúdo correspondente
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Lógica para formulário de login (simplificado)
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login realizado com sucesso!');
+            // Aqui você normalmente faria uma requisição AJAX para o backend
+        });
+
+        // Lógica para formulário de cadastro (simplificado)
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('register-password').value;
+            const confirm = document.getElementById('register-confirm').value;
+            
+            if (password !== confirm) {
+                alert('As senhas não coincidem!');
+                return;
+            }
+            
+            alert('Cadastro realizado com sucesso! Faça login para continuar.');
+            // Muda para a aba de login
+            document.querySelector('.tab-btn[data-tab="login"]').click();
+        });
+    </script>
+</body>
+</html>

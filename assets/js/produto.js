@@ -57,20 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         loadProductDetails();
     }    
-    // Configurar eventos dos thumbnails
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('thumbnail') || e.target.closest('.thumbnail')) {
-            const thumbnail = e.target.classList.contains('thumbnail') ? e.target : e.target.closest('.thumbnail');
-            const imageSrc = thumbnail.dataset.image;
-            
-            document.getElementById('main-product-image').src = imageSrc;
-            
-            // Atualizar thumbnail ativo
-            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
-            thumbnail.classList.add('active');
-        }
-
-    });
     
     // Configurar seletor de quantidade
     document.querySelectorAll('.quantity-btn').forEach(button => {

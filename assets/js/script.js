@@ -230,9 +230,10 @@ function renderProducts(products, containerId) {
         
         // Adiciona evento de clique no produto
         productCard.addEventListener('click', function(e) {
-            // Impede o comportamento padrão do clique
-            e.preventDefault();            
             if (!e.target.classList.contains('add-to-cart') && !e.target.closest('.add-to-cart')) {
+                // Impede o comportamento padrão do clique
+                e.preventDefault();            
+                // Salva o produto completo no localStorage
                 localStorage.setItem('selectedProduct', JSON.stringify(product));
                 window.location.href = `produto.html?id=${product.id}`;
             }
@@ -242,6 +243,8 @@ function renderProducts(products, containerId) {
 
 // Renderizar produtos quando a página carregar
 document.addEventListener('DOMContentLoaded', async function() {
+    
+    checkLoginStatus();
 
     // Carrega produtos do JSON e armazena em featuredProducts
     await loadProducts();
@@ -265,6 +268,25 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
     });
     
+    // Adicionar funcionalidade de busca
+    const searchBar = document.querySelector('.search-bar');
+    if (searchBar) {
+        const searchInput = searchBar.querySelector('input');
+        const searchButton = searchBar.querySelector('button');
+
+        // Busca ao clicar no botão
+        searchButton.addEventListener('click', function() {
+            searchProducts(searchInput.value);
+        });
+
+        // Busca ao pressionar Enter no input
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchProducts(searchInput.value);
+            }
+        });
+    }
+
     // Adicionar evento de clique nos botões "Adicionar ao Carrinho"
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('add-to-cart')) {
@@ -398,5 +420,45 @@ function generateSessionId() {
     }
     return result;
 }
+
+function searchProducts(searchTerm) {
+    const productsGrid = document.getElementById('featured-products');
+    if (!productsGrid) return;
+    
+    if (!searchTerm || searchTerm.trim() === '') {
+        // Se a busca estiver vazia, mostra todos os produtos
+        renderProducts(featuredProducts, 'featured-products');
+        return;
+    }
+
+    const term = searchTerm.toLowerCase();
+    const filteredProducts = featuredProducts.filter(product => 
+        product.name.toLowerCase().includes(term) || 
+        (product.description && product.description.toLowerCase().includes(term))
+    );
+
+    productsGrid.innerHTML = ''; // Limpa os produtos atuais
+    if (filteredProducts.length === 0) {
+        productsGrid.innerHTML = '<div class="no-results">Nenhum produto encontrado para "' + searchTerm + '"</div>';
+    } else {
+        renderProducts(filteredProducts, 'featured-products');
+    }
+
+}
+
+function checkLoginStatus() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const accountLink = document.querySelector('.user-actions a[href="conta.html"]');
+    
+    if (accountLink) {
+        if (isLoggedIn) {
+            accountLink.innerHTML = '<i class="fas fa-user"></i> Minha Conta';
+            // Pode adicionar mais lógica aqui, como mostrar nome do usuário
+        } else {
+            accountLink.innerHTML = '<i class="fas fa-user"></i> Login/Cadastro';
+        }
+    }
+}
+
 
 loadCartFromStorage(); // Carregar o carrinho salvo ao iniciar        
