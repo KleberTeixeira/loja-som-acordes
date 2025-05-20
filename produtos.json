@@ -55,6 +55,16 @@
       "installments": "10x de R$ 350,00 sem juros",
       "description": "Com 61 teclas sensíveis ao toque, o teclado EZ-300 vem com teclas iluminadas especiais e um design portátil, ideal para iniciantes. Com este elegante e abrangente instrumento, você pratica, toca e executa com várias funções de lição e sons de instrumentos autênticos.",
       "category": "teclas"
+    },
+
+    {
+      "id": 7,
+      "name": "Amplificador Meteoro",
+      "price": 1470.00,
+      "image": "assets/img/Amplificador-de-Contrabaixo-Super-Bass-M-750---Meteoro-1.png",
+      "installments": "10x de R$ 147,00 sem juros",
+      "description": "Linha poderosa e versátil no estilo monitor, com alta definição dos sons graves e médios que proporcionam ao músico a segurança para explorar todos os seus estilos musicais. 75 watts RMS com 1 falante de 10´",
+      "category": "audio"
     }
 
   ]
