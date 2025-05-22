@@ -220,7 +220,7 @@ nav {
 }
 
 .product-image {
-    height: 440px;
+    height: 340px;
     background-color: #eee;
     display: flex;
     align-items: center;
@@ -239,8 +239,8 @@ nav {
 /* Melhoria no carregamento de imagens */
 .product-image img {
     width: 200px;
-    height: 400px;
-    object-fit: cover;
+    height: 300px;
+    object-fit: fill;
     transition: transform 0.3s ease;
 }
 
@@ -272,11 +272,6 @@ nav {
     font-size: 14px;
     color: #666;
     margin-bottom: 15px;
-}
-
-.descricao {
-    text-align: center;
-    height: 150px;
 }
 
 .add-to-cart {

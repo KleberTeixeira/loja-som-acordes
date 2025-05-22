@@ -211,23 +211,6 @@ function renderProducts(products, containerId) {
             `;
         }
 
-        /*
-        productCard.innerHTML = `
-            <div class="product-image">
-                <img src="${product.image}" alt="${product.name}" loading="lazy">
-            </div>
-            <div class="product-info">
-                <h3 class="product-name">${product.name}</h3>
-                ${priceHTML}
-                <div class="installment">${product.installments}</div>
-                <div class="descricao">
-                    <p>${product.description || ''}</p>
-                </div>
-                <button class="add-to-cart">Adicionar ao Carrinho</button>
-            </div>
-        `;
-        */
-
         productCard.innerHTML = `
             <div class="product-image">
                 <img src="${product.image}" alt="${product.name}" loading="lazy">
@@ -447,8 +430,7 @@ function searchProducts(searchTerm) {
 
     const term = searchTerm.toLowerCase();
     const filteredProducts = featuredProducts.filter(product => 
-        product.name.toLowerCase().includes(term) || 
-        (product.description && product.description.toLowerCase().includes(term))
+        product.name.toLowerCase().includes(term)
     );
 
     productsGrid.innerHTML = ''; // Limpa os produtos atuais
@@ -457,6 +439,8 @@ function searchProducts(searchTerm) {
     } else {
         renderProducts(filteredProducts, 'featured-products');
     }
+
+    window.location.href = "#produtos";
 
 }
 
